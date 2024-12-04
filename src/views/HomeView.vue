@@ -27,6 +27,13 @@ const gameStore = useGameStore()
       </router-link>
       
       <router-link 
+        to="/maze"
+        class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+      >
+        Sinterklaas Doolhof
+      </router-link>
+      
+      <router-link 
         to="/memory"
         class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
       >

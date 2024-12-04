@@ -24,6 +24,11 @@ const router = createRouter({
       component: () => import('../views/MemoryView.vue')
     },
     {
+      path: '/maze',
+      name: 'maze',
+      component: () => import('../views/MazeView.vue')
+    },
+    {
       path: '/quiz',
       name: 'quiz',
       component: () => import('../views/QuizView.vue')

@@ -17,7 +17,7 @@ export const useGameStore = defineStore('game', {
     },
     
     totalProgress: (state) => {
-      return (state.completedPuzzles.length / 3) * 100 // 3 is totaal aantal puzzels
+      return (state.completedPuzzles.length / 5) * 100
     }
   },
 
@@ -29,5 +29,5 @@ export const useGameStore = defineStore('game', {
     }
   },
 
-  persist: true // Als je de voortgang wilt bewaren in localStorage
+  persist: true
 })
