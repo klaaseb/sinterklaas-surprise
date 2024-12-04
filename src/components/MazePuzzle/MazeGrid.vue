@@ -113,68 +113,68 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div 
-    class="flex flex-col items-center gap-4"
-    @touchstart="handleTouchStart"
-    @touchend="handleTouchEnd"
-  >
-    <div class="text-center mb-4">
-      <p>Help Sinterklaas het pakje te vinden!</p>
-      <p class="text-sm text-gray-600">Gebruik de pijltjestoetsen of swipe om te bewegen</p>
-    </div>
+  <div class="flex items-start gap-8">
+    <div class="flex flex-col items-center gap-4">
+      <div class="text-center mb-4">
+        <p>Help Sinterklaas het pakje te vinden!</p>
+        <p class="text-sm text-gray-600">Gebruik de pijltjestoetsen of de knoppen om te bewegen</p>
+      </div>
 
-    <div class="grid gap-1 p-4 bg-gray-100 rounded-lg">
-      <div 
-        v-for="(row, y) in maze" 
-        :key="`row-${y}`"
-        class="flex gap-1"
-      >
-        <div
-          v-for="(cell, x) in row"
-          :key="`cell-${x}-${y}`"
-          class="w-8 h-8 flex items-center justify-center rounded"
-          :class="{
-            'bg-red-800': cell === 1,
-            'bg-white': cell === 0 || cell === 2 || cell === 3,
-          }"
+      <div class="grid gap-1 p-4 bg-gray-100 rounded-lg">
+        <div 
+          v-for="(row, y) in maze" 
+          :key="`row-${y}`"
+          class="flex gap-1"
         >
-          <template v-if="x === playerPos.x && y === playerPos.y">
-            <span class="text-xl">🎅</span>
-          </template>
-          <template v-else-if="cell === 3">
-            <span class="text-xl">🎁</span>
-          </template>
+          <div
+            v-for="(cell, x) in row"
+            :key="`cell-${x}-${y}`"
+            class="w-8 h-8 flex items-center justify-center rounded"
+            :class="{
+              'bg-red-800': cell === 1,
+              'bg-white': cell === 0 || cell === 2 || cell === 3,
+            }"
+          >
+            <template v-if="x === playerPos.x && y === playerPos.y">
+              <span class="text-xl">🎅</span>
+            </template>
+            <template v-else-if="cell === 3">
+              <span class="text-xl">🎁</span>
+            </template>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Mobile controls -->
-    <div class="md:hidden grid grid-cols-3 gap-2 mt-4">
+    <!-- Extra grote controls met voldoende ruimte -->
+    <div class="w-48 flex flex-col items-center gap-4 self-center">
       <button 
-        class="p-4 bg-gray-200 rounded"
-        @click="movePlayer(-1, 0)"
+        class="w-16 h-16 bg-gray-200 rounded hover:bg-gray-300 flex items-center justify-center text-2xl"
+        @click="movePlayer(0, -1)"
       >
-        ⬅️
+        ⬆️
       </button>
-      <div class="grid grid-rows-2 gap-2">
+      
+      <div class="flex gap-4">
         <button 
-          class="p-4 bg-gray-200 rounded"
-          @click="movePlayer(0, -1)"
+          class="w-16 h-16 bg-gray-200 rounded hover:bg-gray-300 flex items-center justify-center text-2xl"
+          @click="movePlayer(-1, 0)"
         >
-          ⬆️
+          ⬅️
         </button>
         <button 
-          class="p-4 bg-gray-200 rounded"
-          @click="movePlayer(0, 1)"
+          class="w-16 h-16 bg-gray-200 rounded hover:bg-gray-300 flex items-center justify-center text-2xl"
+          @click="movePlayer(1, 0)"
         >
-          ⬇️
+          ➡️
         </button>
       </div>
+      
       <button 
-        class="p-4 bg-gray-200 rounded"
-        @click="movePlayer(1, 0)"
+        class="w-16 h-16 bg-gray-200 rounded hover:bg-gray-300 flex items-center justify-center text-2xl"
+        @click="movePlayer(0, 1)"
       >
-        ➡️
+        ⬇️
       </button>
     </div>
   </div>

@@ -1,63 +1,60 @@
 <script setup lang="ts">
+import { computed, watchEffect } from 'vue'
+import { useRouter } from 'vue-router'
 import { useGameStore } from '../stores/game'
-import { computed } from 'vue'
 
+const router = useRouter()
 const gameStore = useGameStore()
 
 const games = [
-  { 
-    id: 'crossword',
-    route: '/crossword',
-    title: 'Kruiswoordpuzzel',
-    icon: '📝',
-    description: 'Los de Sinterklaas kruiswoordpuzzel op!'
-  },
-  { 
-    id: 'sliding',
-    route: '/sliding',
-    title: 'Schuifpuzzel',
-    icon: '🎯',
-    description: 'Schuif de stukjes op de juiste plek'
-  },
-  { 
-    id: 'maze',
-    route: '/maze',
-    title: 'Sinterklaas Doolhof',
-    icon: '🎅',
-    description: 'Help Sinterklaas door het doolhof'
-  },
-  { 
+  {
     id: 'catch',
-    route: '/catch',
     title: 'Pepernoten Vangen',
+    description: 'Help Piet om alle pepernoten te vangen!',
     icon: '🍪',
-    description: 'Vang zoveel mogelijk pepernoten!'
+    route: '/catch'
   },
-  { 
-    id: 'candy',
-    route: '/candy',
-    title: 'Snoep Puzzel',
-    icon: '🍬',
-    description: 'Maak matches met het snoepgoed'
-  },
-  { 
+  {
     id: 'memory',
-    route: '/memory',
     title: 'Pakjes Memory',
+    description: 'Vind alle matching pakjes!',
     icon: '🎁',
-    description: 'Vind alle matching pakjes'
+    route: '/memory'
   },
-  { 
-    id: 'quiz',
-    route: '/quiz',
-    title: 'Foto Quiz',
-    icon: '📸',
-    description: 'Test je Sinterklaas kennis!'
+  {
+    id: 'candy',
+    title: 'Snoep Puzzel',
+    description: 'Maak rijen van 3 of meer snoepjes!',
+    icon: '🍬',
+    route: '/candy'
+  },
+  {
+    id: 'maze',
+    title: 'Doolhof',
+    description: 'Help Sinterklaas door het doolhof!',
+    icon: '🎅',
+    route: '/maze'
+  },
+  {
+    id: 'sliding',
+    title: 'Schuifpuzzel',
+    description: 'Schuif de stukjes op de juiste plek!',
+    icon: '🧩',
+    route: '/sliding'
   }
 ]
 
 const progress = computed(() => {
   return Math.round((gameStore.completedPuzzles.length / games.length) * 100)
+})
+
+// Check direct en reageer op veranderingen in completedPuzzles
+watchEffect(() => {
+  const allGamesCompleted = games.every(game => gameStore.isPuzzleCompleted(game.id))
+  if (allGamesCompleted) {
+    console.log('Alle spellen voltooid, navigeren naar victory pagina')
+    router.push('/victory')
+  }
 })
 
 const isPuzzleCompleted = (puzzleId: string) => {
@@ -70,12 +67,12 @@ const isPuzzleCompleted = (puzzleId: string) => {
     <div class="max-w-4xl mx-auto">
       <h1 class="text-4xl mb-8">
         <span class="festive-icon">🎅</span>
-        Welkom bij de Sinterklaas Surprise!
+            Welkom bij het sinterklaas puzzelspel
         <span class="festive-icon">🎁</span>
       </h1>
       
       <p class="text-xl mb-6 text-gray-700">
-        Lieve Anneke, los deze puzzels op om je cadeau te vinden!
+        Lieve Anneke, los deze spelletjes op om je cadeau te vinden!
       </p>
 
       <!-- Voortgangsbalk -->

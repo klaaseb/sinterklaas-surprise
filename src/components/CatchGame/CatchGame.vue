@@ -31,7 +31,10 @@ const moveBag = (e: MouseEvent | Touch) => {
 
 const handleTouch = (e: TouchEvent) => {
   e.preventDefault()
-  moveBag(e.touches[0])
+  const rect = (e.target as HTMLElement).getBoundingClientRect()
+  const touch = e.touches[0]
+  const x = Math.max(bagWidth/2, Math.min(touch.clientX - rect.left, gameWidth - bagWidth/2))
+  bagPosition.value = x
 }
 
 // Voeg nieuwe pepernoot toe
@@ -100,8 +103,8 @@ onUnmounted(() => {
       class="relative bg-blue-100 rounded-lg overflow-hidden cursor-none"
       :style="{ width: `${gameWidth}px`, height: `${gameHeight}px` }"
       @mousemove="moveBag"
-      @touchmove="handleTouch"
-      @touchstart="handleTouch"
+      @touchmove.prevent="handleTouch"
+      @touchstart.prevent="handleTouch"
     >
       <!-- Vallende pepernoten -->
       <div
@@ -120,7 +123,7 @@ onUnmounted(() => {
 
       <!-- Sinterklaas zak -->
       <div
-        class="absolute bottom-0 text-5xl"
+        class="absolute bottom-0 text-5xl pointer-events-none"
         :style="{
           left: `${bagPosition - bagWidth/2}px`,
           width: `${bagWidth}px`,
