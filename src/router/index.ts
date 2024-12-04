@@ -19,6 +19,11 @@ const router = createRouter({
       component: () => import('../views/SlidingView.vue')
     },
     {
+      path: '/memory',
+      name: 'memory',
+      component: () => import('../views/MemoryView.vue')
+    },
+    {
       path: '/quiz',
       name: 'quiz',
       component: () => import('../views/QuizView.vue')

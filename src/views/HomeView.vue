@@ -27,6 +27,13 @@ const gameStore = useGameStore()
       </router-link>
       
       <router-link 
+        to="/memory"
+        class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+      >
+        Pakjes Memory
+      </router-link>
+      
+      <router-link 
         to="/quiz"
         class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
       >
