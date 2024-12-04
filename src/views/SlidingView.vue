@@ -3,12 +3,15 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useGameStore } from '../stores/game'
 import SlidingGrid from '../components/SlidingPuzzle/SlidingGrid.vue'
+import puzzleImage from '../assets/images/slide-puzzle.jpg'
 
 const router = useRouter()
 const gameStore = useGameStore()
 const showReward = ref(false)
 
-const imageUrl = 'https://fastly.picsum.photos/id/621/536/354.jpg?hmac=_8_0dSqKvqAOmC-OYdQNAd-gcWiXFDI9svR-kItggsg'
+const goToHome = () => {
+  router.push('/')
+}
 
 const handlePuzzleComplete = () => {
   gameStore.completePuzzle('sliding')
@@ -26,8 +29,9 @@ const handlePuzzleComplete = () => {
       Schuifpuzzel
     </h1>
     
+    
     <SlidingGrid 
-      :image-url="imageUrl"
+      :image-url="puzzleImage"
       :grid-size="3"
       @puzzle-completed="handlePuzzleComplete"
     />
