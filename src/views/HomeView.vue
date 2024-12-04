@@ -34,6 +34,13 @@ const gameStore = useGameStore()
       </router-link>
       
       <router-link 
+        to="/catch"
+        class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+      >
+        Pepernoten Vangen
+      </router-link>
+      
+      <router-link 
         to="/memory"
         class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
       >
