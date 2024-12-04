@@ -41,6 +41,13 @@ const gameStore = useGameStore()
       </router-link>
       
       <router-link 
+        to="/candy"
+        class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+      >
+        Snoep Puzzel
+      </router-link>
+      
+      <router-link 
         to="/memory"
         class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
       >

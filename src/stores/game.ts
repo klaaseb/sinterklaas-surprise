@@ -17,7 +17,8 @@ export const useGameStore = defineStore('game', {
     },
     
     totalProgress: (state) => {
-      return (state.completedPuzzles.length / 6) * 100
+      // Update naar 7 totale puzzels
+      return (state.completedPuzzles.length / 7) * 100
     }
   },
 
