@@ -8,15 +8,14 @@ const router = useRouter()
 const gameStore = useGameStore()
 const showReward = ref(false)
 
-// Vervang deze URL met de URL van jouw afbeelding
-const imageUrl = 'https://fastly.picsum.photos/id/621/536/354.jpg?hmac=_8_0dSqKvqAOmC-OYdQNAd-gcWiXFDI9svR-kItggsg' // Voorbeeld afbeelding
+const imageUrl = 'https://fastly.picsum.photos/id/621/536/354.jpg?hmac=_8_0dSqKvqAOmC-OYdQNAd-gcWiXFDI9svR-kItggsg'
 
 const handlePuzzleComplete = () => {
   gameStore.completePuzzle('sliding')
   showReward.value = true
   
   setTimeout(() => {
-    router.push('/quiz')
+    router.push('/')
   }, 3000)
 }
 </script>
@@ -40,7 +39,7 @@ const handlePuzzleComplete = () => {
       <div class="bg-white p-8 rounded-lg text-center transform animate-bounce">
         <h2 class="text-2xl font-bold mb-4">🎉 Goed gedaan! 🎉</h2>
         <p class="mb-2">Je hebt de schuifpuzzel opgelost!</p>
-        <p class="text-sm text-gray-600">Je wordt zo doorgestuurd naar de volgende uitdaging...</p>
+        <p class="text-sm text-gray-600">Je wordt zo doorgestuurd naar het overzicht...</p>
       </div>
     </div>
   </div>

@@ -12,9 +12,8 @@ const handlePuzzleComplete = () => {
   gameStore.completePuzzle('crossword')
   showReward.value = true
   
-  // Na 3 seconden doorsturen naar de volgende puzzle
   setTimeout(() => {
-    router.push('/sliding')
+    router.push('/')
   }, 3000)
 }
 </script>
