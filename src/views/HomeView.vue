@@ -36,11 +36,11 @@ const games = [
     route: '/maze'
   },
   {
-    id: 'sliding',
-    title: 'Schuifpuzzel',
-    description: 'Schuif de stukjes op de juiste plek!',
+    id: 'jigsaw',
+    title: 'Sinterklaas Puzzel',
+    description: 'Maak de puzzel compleet!',
     icon: '🧩',
-    route: '/sliding'
+    route: '/jigsaw'
   }
 ]
 
@@ -48,7 +48,6 @@ const progress = computed(() => {
   return Math.round((gameStore.completedPuzzles.length / games.length) * 100)
 })
 
-// Check direct en reageer op veranderingen in completedPuzzles
 watchEffect(() => {
   const allGamesCompleted = games.every(game => gameStore.isPuzzleCompleted(game.id))
   if (allGamesCompleted) {

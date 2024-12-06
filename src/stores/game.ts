@@ -18,6 +18,7 @@ export const useGameStore = defineStore('game', {
     },
 
     resetProgress() {
+      console.log('Resetting progress...');
       this.completedPuzzles = []
       localStorage.removeItem('completedPuzzles')
     }

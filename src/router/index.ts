@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import SlidingView from '../views/SlidingView.vue'
 import MazeView from '../views/MazeView.vue'
 import CatchView from '../views/CatchView.vue'
 import CandyView from '../views/CandyView.vue'
 import MemoryView from '../views/MemoryView.vue'
+import JigsawView from '../views/JigsawView.vue'
 import VictoryView from '../views/VictoryView.vue'
 import { useGameStore } from '../stores/game'
 
@@ -37,9 +37,9 @@ const router = createRouter({
       component: MazeView
     },
     {
-      path: '/sliding',
-      name: 'sliding',
-      component: SlidingView
+      path: '/jigsaw',
+      name: 'jigsaw',
+      component: JigsawView
     },
     {
       path: '/victory',
@@ -47,7 +47,7 @@ const router = createRouter({
       component: VictoryView,
       beforeEnter: (to, from, next) => {
         const gameStore = useGameStore()
-        const allGames = ['catch', 'memory', 'candy', 'maze', 'sliding']
+        const allGames = ['catch', 'memory', 'candy', 'maze', 'jigsaw']
         const allCompleted = allGames.every(game => gameStore.isPuzzleCompleted(game))
         
         if (allCompleted) {
