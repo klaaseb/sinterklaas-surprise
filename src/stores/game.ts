@@ -1,34 +1,25 @@
 import { defineStore } from 'pinia'
 
-interface GameState {
-  completedPuzzles: string[];
-  currentProgress: number;
-}
-
 export const useGameStore = defineStore('game', {
-  state: (): GameState => ({
-    completedPuzzles: [],
-    currentProgress: 0
+  state: () => ({
+    completedPuzzles: JSON.parse(localStorage.getItem('completedPuzzles') || '[]') as string[]
   }),
-
-  getters: {
-    isPuzzleCompleted: (state) => (puzzleId: string) => {
-      return state.completedPuzzles.includes(puzzleId)
-    },
-    
-    totalProgress: (state) => {
-      // Update naar 7 totale puzzels
-      return (state.completedPuzzles.length / 5) * 100
-    }
-  },
 
   actions: {
     completePuzzle(puzzleId: string) {
       if (!this.completedPuzzles.includes(puzzleId)) {
         this.completedPuzzles.push(puzzleId)
+        localStorage.setItem('completedPuzzles', JSON.stringify(this.completedPuzzles))
       }
-    }
-  },
+    },
 
-  persist: true
+    isPuzzleCompleted(puzzleId: string) {
+      return this.completedPuzzles.includes(puzzleId)
+    },
+
+    resetProgress() {
+      this.completedPuzzles = []
+      localStorage.removeItem('completedPuzzles')
+    }
+  }
 })

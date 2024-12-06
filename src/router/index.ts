@@ -56,6 +56,16 @@ const router = createRouter({
           next('/')
         }
       }
+    },
+    {
+      path: '/reset-progress',
+      name: 'reset',
+      redirect: '/',
+      beforeEnter: (to, from, next) => {
+        const gameStore = useGameStore()
+        gameStore.resetProgress()
+        next('/')
+      }
     }
   ]
 })
